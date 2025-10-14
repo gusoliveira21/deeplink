@@ -1,4 +1,4 @@
-# DeepLink Yashmakan
+# DeepLink
 
 ## 📱 O que é o projeto
 
