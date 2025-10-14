@@ -1,0 +1,151 @@
+[gd_scene load_steps=12 format=3 uid="uid://bldh208ghnnly"]
+
+[ext_resource type="Script" uid="uid://17xfbt6t0fyv" path="res://button.gd" id="1_xac2r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_red_normal"]
+bg_color = Color(0.8, 0.2, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_red_pressed"]
+bg_color = Color(0.7, 0.1, 0.1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_red_hover"]
+bg_color = Color(0.9, 0.3, 0.3, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blue_normal"]
+bg_color = Color(0.2, 0.4, 0.8, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blue_pressed"]
+bg_color = Color(0.1, 0.3, 0.7, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blue_hover"]
+bg_color = Color(0.3, 0.5, 0.9, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_home_normal"]
+bg_color = Color(0.2, 0.6, 0.3, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_home_pressed"]
+bg_color = Color(0.1, 0.5, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_home_hover"]
+bg_color = Color(0.3, 0.7, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_log_panel"]
+bg_color = Color(0, 0, 0, 0.752941)
+border_width_top = 2
+
+[node name="TelaPrincipal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xac2r")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12549, 0.141176, 0.168627, 1)
+
+[node name="MainVBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonContainer" type="CenterContainer" parent="MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonVBox" type="VBoxContainer" parent="MainVBox/ButtonContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="RedButton" type="Button" parent="MainVBox/ButtonContainer/ButtonVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_red_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_red_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_red_hover")
+text = "Tela Vermelha"
+
+[node name="BlueButton" type="Button" parent="MainVBox/ButtonContainer/ButtonVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_blue_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_blue_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_blue_hover")
+text = "Tela Azul"
+
+[node name="HomeButton" type="Button" parent="MainVBox/ButtonContainer/ButtonVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_home_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_home_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_home_hover")
+text = "Tela Home"
+
+[node name="LogPanel" type="PanelContainer" parent="MainVBox"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_log_panel")
+
+[node name="LogScroll" type="ScrollContainer" parent="MainVBox/LogPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LogLabel" type="Label" parent="MainVBox/LogPanel/LogScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "Log de eventos..."
+autowrap_mode = 2
