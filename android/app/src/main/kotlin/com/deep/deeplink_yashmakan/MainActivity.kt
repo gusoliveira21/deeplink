@@ -1,4 +1,4 @@
-package com.deep.deeplink_yashmakan
+package com.deep.deeplink
 
 import io.flutter.embedding.android.FlutterActivity
 
