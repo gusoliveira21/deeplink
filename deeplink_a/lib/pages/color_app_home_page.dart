@@ -206,31 +206,79 @@ class _ColorAppHomePageState extends State<ColorAppHomePage>
     final secs = seconds % 60;
     return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
   }
+  //Sugestão de JSON para o formato json que o backend precisa enviar para listar o apk.
+  //Para um único APK:
+  // {
+  //   "packageName": "com.example.testedeeplink",
+  //   "activityName": "com.godot.game.GodotApp"
+  // }
+  //Para uma lista de APKs:
+  // {
+  //   "apps": [
+  //     {
+  //       "packageName": "com.example.testedeeplink",
+  //       "activityName": "com.godot.game.GodotApp"
+  //     },
+  //     {
+  //       "packageName": "com.outro.app",
+  //       "activityName": "com.outro.app.MainActivity"
+  //     }
+  //   ]
+  // }
 
   Future<void> _openGodotApp() async {
-    const packageName = 'com.deep.deeplink';
-    final uri = Uri.parse('package:$packageName');
+    const packageName = 'com.example.testedeeplink';
 
     try {
-      final canLaunch = await canLaunchUrl(uri);
-      if (canLaunch) {
-        await launchUrl(uri);
-      } else {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('App Godot não encontrado'),
-              backgroundColor: Colors.red,
-            ),
-          );
+      final List<Uri> urisToTry = [
+        Uri.parse(
+          'intent://#Intent;package=$packageName;component=$packageName/com.godot.game.GodotApp;end',
+        ),
+        Uri.parse('package:$packageName'),
+        Uri.parse('android-app://$packageName'),
+        Uri.parse('intent://#Intent;package=$packageName;end'),
+      ];
+
+      bool launched = false;
+      String lastError = '';
+
+      for (final uri in urisToTry) {
+        try {
+          if (await canLaunchUrl(uri)) {
+            launched = await launchUrl(
+              uri,
+              mode: LaunchMode.externalApplication,
+            );
+            if (launched) {
+              print('App aberto com sucesso usando: $uri');
+              break;
+            }
+          }
+        } catch (e) {
+          lastError = e.toString();
+          print('Erro ao tentar abrir com $uri: $e');
         }
       }
+
+      if (!launched && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'App testedeeplink não encontrado ou não pode ser aberto. Erro: $lastError',
+            ),
+            backgroundColor: Colors.red,
+            duration: const Duration(seconds: 5),
+          ),
+        );
+      }
     } catch (e) {
+      print('Erro geral ao abrir app: $e');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Erro ao abrir app: $e'),
+            content: Text('Erro ao abrir testedeeplink: $e'),
             backgroundColor: Colors.red,
+            duration: const Duration(seconds: 5),
           ),
         );
       }
