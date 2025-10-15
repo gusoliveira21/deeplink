@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bldh208ghnnly"]
+[gd_scene load_steps=18 format=3 uid="uid://bldh208ghnnly"]
 
 [ext_resource type="Script" uid="uid://17xfbt6t0fyv" path="res://button.gd" id="1_xac2r"]
 
@@ -65,6 +65,48 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_success_normal"]
+bg_color = Color(0.1, 0.7, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_success_pressed"]
+bg_color = Color(0.05, 0.6, 0.15, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_success_hover"]
+bg_color = Color(0.15, 0.8, 0.25, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_error_normal"]
+bg_color = Color(0.9, 0.1, 0.1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_error_pressed"]
+bg_color = Color(0.8, 0.05, 0.05, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_error_hover"]
+bg_color = Color(1, 0.2, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_log_panel"]
 bg_color = Color(0, 0, 0, 0.752941)
 border_width_top = 2
@@ -101,11 +143,17 @@ size_flags_vertical = 3
 
 [node name="ButtonVBox" type="VBoxContainer" parent="MainVBox/ButtonContainer"]
 layout_mode = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MainVBox/ButtonContainer/ButtonVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "1. Enviar Requisição para o Flutter"
+horizontal_alignment = 1
 
 [node name="RedButton" type="Button" parent="MainVBox/ButtonContainer/ButtonVBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(350, 70)
+custom_minimum_size = Vector2(400, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_red_normal")
@@ -115,7 +163,7 @@ text = "Tela Vermelha"
 
 [node name="BlueButton" type="Button" parent="MainVBox/ButtonContainer/ButtonVBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(350, 70)
+custom_minimum_size = Vector2(400, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_blue_normal")
@@ -125,13 +173,43 @@ text = "Tela Azul"
 
 [node name="HomeButton" type="Button" parent="MainVBox/ButtonContainer/ButtonVBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(350, 70)
+custom_minimum_size = Vector2(400, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_home_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_home_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_home_hover")
 text = "Tela Home"
+
+[node name="HSeparator" type="HSeparator" parent="MainVBox/ButtonContainer/ButtonVBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label2" type="Label" parent="MainVBox/ButtonContainer/ButtonVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "2. Simular Resposta para o Flutter"
+horizontal_alignment = 1
+
+[node name="SuccessButton" type="Button" parent="MainVBox/ButtonContainer/ButtonVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_success_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_success_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_success_hover")
+text = "Simular Sucesso"
+
+[node name="ErrorButton" type="Button" parent="MainVBox/ButtonContainer/ButtonVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_error_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_error_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_error_hover")
+text = "Simular Erro"
 
 [node name="LogPanel" type="PanelContainer" parent="MainVBox"]
 custom_minimum_size = Vector2(0, 200)
