@@ -22,7 +22,7 @@
             </intent-filter>
 
 
-            <meta-data android:name="flutter.deeklinking_enabled" android:value="true" />
+            <meta-data android:name="flutter.deeplinking_enabled" android:value="true" />
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
